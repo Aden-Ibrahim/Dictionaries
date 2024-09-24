@@ -8,24 +8,21 @@ dictionary = {
 
 def projekt_med_flest_timmar(projekt_lista, anställd): # Denna funktion berättar vilket projekt som en person har spenderat mest tid på
 
-    timmar = [0]
-    
+    anställd_info = {}
+
     for projekt in projekt_lista:
         for projekt_anställd in projekt_lista[projekt]:
             if anställd == projekt_anställd:
-                timmar.append(projekt_lista[projekt][projekt_anställd])
+                anställd_info.update({projekt: projekt_lista[projekt][projekt_anställd]})
 
-    if timmar == [0]:
+    if anställd_info == {}:
         print("Personen finns ej med i några projekt")
-
-    else:    
-        for projekt in projekt_lista:
-            for projekt_anställd in projekt_lista[projekt]:
-                if anställd == projekt_anställd and projekt_lista[projekt][projekt_anställd] == max(timmar):
-                    return print(projekt)
+    
+    else:
+        anställd_info_max = [max(anställd_info), max(anställd_info.values()), 5]
+        print(f"{anställd} har jobbat {anställd_info_max[1]} timmar i {anställd_info_max[0]}")
     
 projekt_med_flest_timmar(dictionary, "Erik")
-
 
 """Hur skulle du skapa en ny dictionary som bara innehåller projekten där Lina har arbetat mer än 30 timmar?"""
 
@@ -42,6 +39,6 @@ def uppdaterad_dictionary(projekt_lista, anställd): # Denna funktion skapar en 
         print("Personen finns ej med i några projekt i mer än 30 timmar")
 
     else:
-        return print(ny_projekt)
+        print(ny_projekt)
 
 uppdaterad_dictionary(dictionary, "Lina")
